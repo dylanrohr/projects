@@ -10,7 +10,12 @@ Inputs: Configuration parameters for simulation including solver type/method, TI
 
 Outputs: 2D heat map plots of transient time steps as well as a steady state solution if simulation run time allows. Also outputs total simulation runtime. 
 
-To Run: run heat2D.m and input configuration parameters in terminal.
+To Run: run Heat2D_GUI.mlapp and input configuration parameters into GUI and hit run! 
+
+
+
+
+
 
 Function Descriptions: 
 
