@@ -1,0 +1,32 @@
+% Sets path to access source files
+projectRoot = fileparts(mfilename('fullpath'));
+addpath(genpath(fullfile(projectRoot, '..', '..', 'src')));
+
+configs = heat2D_configuration();
+
+% Override Configs
+configs.solver.type = 2;
+
+configs.BC.Ttop    = 100;
+configs.BC.Tbottom = 100;
+configs.BC.Tleft   = 100;
+configs.BC.Tright  = 100;
+configs.IC.T0 = 0;
+
+configs.units = 1
+configs.IC.alpha = 0.645/3600;
+configs.time.tend = 18000;   
+configs.time.dt = 0.05;
+configs.time.plottingfreq = 600;
+    
+
+
+    solution = heat2D_FTCS(configs);   % or FTCS
+
+    T_final = solution(end).Tn;
+
+    tol = 1e-4;
+
+    assert(max(abs(T_final(:) - 100)) < tol, 'Heat Regression failed exact relation');
+
+    disp('Regression test passed: Constant BC steady state correct.');
